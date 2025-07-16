@@ -5,15 +5,15 @@ function throwIfNaN(num: number) {
 }
 
 
-export function divideNumbers(a: number, b: number): number {
+export function divideNumbers(a: number | string, b: number | string): number {
     // if(Number.isNaN(a) || Number.isNaN(b)) {
     //     throw new Error('number cannot be NaN!');
     // }
-    throwIfNaN(b);
-    throwIfNaN(a);
-    if(b === 0) {
+    throwIfNaN(Number(b));
+    throwIfNaN(Number(a));
+    if(Number(b) === 0) {
         throw new Error('Cannot divide by 0!');
     }
-    return a / b;
+    return Number(a) / Number(b);
     //return Number((a / b).toFixed(2));
 }
