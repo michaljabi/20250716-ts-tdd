@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "vitest.explorer",
+    "deinsoftware.vitest-snippets",
+    "WallabyJs.wallaby-vscode",
+    "vscode-icons-team.vscode-icons",
+    "eamodio.gitlens",
+    "ritwickdey.LiveServer",
+    "achil.vscode-javascript-repl"
+  ]
+}
