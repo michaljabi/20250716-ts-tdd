@@ -51,7 +51,7 @@ describe('carFactory [a008]', () => {
 
 	// Ten test, mimo że jest bardzo opisowy, zapewnia większą „czytelność” i przejrzystość
 	// Widzimy, co dokładnie deweloper chciał przetestować.
-	it('should make default manufacturer to BMW when only engine capacity and model given', () => {
+	it('should make default manufacturer to BMW when only engine capacity and model given {RPS-223}', () => {
 		// GIVEN:
 		const engineCapacity = 4.4;
 		const model = 'X7';

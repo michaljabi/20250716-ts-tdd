@@ -17,6 +17,7 @@
  * - wymaga podobnej konfiguracji i demontażu (setup / teardown)
  * */
 
+
 describe('sample test suite [a004]', () => {
 	test('can be grouped in so called test suits' , () => {
 		/*
