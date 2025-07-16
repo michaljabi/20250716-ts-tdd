@@ -8,8 +8,10 @@
     "test:ci": "vitest --run",
     "test:ui": "vitest --ui",
     "test:part-a": "vitest src/A-testing-basics-and-rules --reporter verbose",
+    "test:c01": "vitest c01",
     "coverage": "vitest --coverage",
-    "build": "tsc"
+    "build": "tsc",
+    "list": "dir"
   },
   "keywords": [],
   "author": "",
