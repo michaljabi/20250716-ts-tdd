@@ -21,11 +21,11 @@ describe("divide-numbers", () => {
     });
 
     it.each([
-        { dividend: 'xuxwyw', divider: 34},
-        { dividend: 20, divider: 'xuxwyw'}
-    ])("should throw an Exception ('number cannot be NaN!') if any of the string ($dividend / $divider) cannot be casted to number", ({dividend, divider}) => {  
+        { dividend: 'xuxwyw', divider: 34, source: 'dividend'},
+        { dividend: 20, divider: 'xuxwyw', source: 'divider'}
+    ])("should throw an Exception ('$source cannot be casted to number!') if any of the string ($dividend / $divider) cannot become a valid number", ({dividend, divider, source}) => {  
 
-        expect(() =>  divideNumbers(dividend, divider)).toThrowError('number cannot be NaN!');
+        expect(() =>  divideNumbers(dividend, divider)).toThrowError(`${source} cannot be casted to number!`);
     });
 
      it("should throw an Exception ('Cannot divide by 0!') if 0 is a string divider", () => {
