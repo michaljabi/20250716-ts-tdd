@@ -1,0 +1,8 @@
+{
+    "autolink.queries": [
+        {
+            "linkPattern": "RPS-(\\d{1,6})",
+            "linkText": "https://github.com/non-exising-project/issues/RPS-${0}",
+        },
+    ],
+}

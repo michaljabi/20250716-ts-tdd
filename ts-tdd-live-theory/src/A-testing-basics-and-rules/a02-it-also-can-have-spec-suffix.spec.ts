@@ -7,12 +7,23 @@
  * */
 
 function outerScopedGreetings(name: string): string {
-	return 'Greetings ' + name;
+	return `Greetings ${name}`;
 }
 
-test('second simple test [a002]' , () => {
+test('second simple test [a002] {RPS-001}' , () => {
 
 	 const greet = outerScopedGreetings('Mike');
 
-	 expect(greet).toEqual('Greetings Mike');
+	 expect(greet, 'Should be Mike! {RPS-012}').toContain('Mike');
+})
+
+
+
+test('should be "Greetings Barbara" if name is Barbara' , () => {
+
+	const name = "Barbara";
+
+	const greet = outerScopedGreetings(name);
+
+	expect(greet).toEqual('Greetings Barbara');
 })
