@@ -1,10 +1,18 @@
 import { divideNumbers } from "./divide-numbers";
 
-describe("divide-numbers", () => {
-  it("should return 10 if 100 is divided by 10", () => {
-    const result = divideNumbers(100, 10);
+// puść test w konsoli żeby zobaczyć pełny raport.
 
-    expect(result).toBe(10);
+
+describe("divide-numbers", () => {
+
+  it.each([
+    [-5, -100, 20],
+    [10, 100, 10],
+    [-10, 100, -10],
+  ])("should return %i if %i divided by %i", (expectedResult, a, b) => {
+    const result = divideNumbers(a, b);
+
+    expect(result).toBe(expectedResult);
   });
 
   // it("should return 0.33 (rounded to 2 digits after dot) when divide: 1 / 3", () => {
@@ -13,12 +21,6 @@ describe("divide-numbers", () => {
 
     // expect(result).toBe(0.33);
     expect(result).toBeCloseTo(0.3333, 4);
-  });
-
-  it("should return -5 if -100 divided by 20", () => {
-    const result = divideNumbers(-100, 20);
-
-    expect(result).toBe(-5);
   });
 
   it("should not return 30 if 30 / 1.1", () => {
@@ -36,10 +38,12 @@ describe("divide-numbers", () => {
     expect(result).toBe(0);
   });
 
-  it("should throw an Exception ('number cannot be NaN!') if any of the number is NaN", () => {  
+  it.each([
+    { dividend: 100, divider: NaN},
+    { dividend: NaN, divider: 23}
+  ])("should throw an Exception ('number cannot be NaN!') if any of the number ($dividend / $divider) is NaN", ({dividend, divider}) => {  
 
-    expect(() =>  divideNumbers(100, NaN)).toThrowError('number cannot be NaN!');
-    expect(() =>  divideNumbers(NaN, 90)).toThrowError('number cannot be NaN!');
+    expect(() =>  divideNumbers(dividend, divider)).toThrowError('number cannot be NaN!');
   });
 
   it("should throw an Exception ('Cannot divide by 0!') if 0 is a divider", () => {
