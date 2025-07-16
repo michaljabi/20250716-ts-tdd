@@ -5,6 +5,37 @@ import { divideNumbers } from "./divide-numbers";
 
 describe("divide-numbers", () => {
 
+
+  describe("work with stings (a04.4)", () => {
+    it.each([
+        [-100, '20', -5],
+        ['100', 10, 10],
+        ['100', '-10', -10],
+        ['2', '0.5', 4.0],
+    ])("when %d divided by %d it should be %d", (a, b, expectedResult) => {
+        const result = divideNumbers(a, b);
+
+        // expect.assertions(1)
+
+        expect(result).toBe(expectedResult);
+    });
+
+    it.each([
+        { dividend: 'xuxwyw', divider: 34},
+        { dividend: 20, divider: 'xuxwyw'}
+    ])("should throw an Exception ('number cannot be NaN!') if any of the string ($dividend / $divider) cannot be casted to number", ({dividend, divider}) => {  
+
+        expect(() =>  divideNumbers(dividend, divider)).toThrowError('number cannot be NaN!');
+    });
+
+     it("should throw an Exception ('Cannot divide by 0!') if 0 is a string divider", () => {
+            const divider = '0';
+
+            expect(() =>  divideNumbers(100, divider)).toThrowError('Cannot divide by 0!');
+    });
+
+  })
+
   it.each([
     [-5, -100, 20],
     [10, 100, 10],
