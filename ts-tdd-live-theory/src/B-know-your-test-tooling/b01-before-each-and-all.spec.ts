@@ -63,6 +63,10 @@ describe('beforeEach and beforeAll block [b001]', () => {
 		* To nasza gwarancja rozpoczęcia z tymi samymi wartościami początkowymi
 		* */
 
+		beforeEach(() => {
+			// someRestartableValue = '?'
+		})
+
 		  it('should be always 😃 on start', () => {
 
 		  	expect(someRestartableValue).toBe('😃')
