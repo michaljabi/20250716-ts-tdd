@@ -19,3 +19,9 @@
 
 ### hint:
 _możesz przygotować sobie dedykowany `script` w [package.json](../../../package.json) uruchamiający tylko plik z testami, nad którymi pracujesz._
+
+
+### Zmiana wymagań (a04.2):
+- jeśli dzielimy przez `0` lub jeśli któraś z liczb `a` / `b` jest `NaN` 
+- rzuć odpowiedni wyjątek!
+
