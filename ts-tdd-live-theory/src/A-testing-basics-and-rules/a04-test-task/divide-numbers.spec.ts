@@ -31,23 +31,20 @@ describe("divide-numbers", () => {
     const dividend = 0;
 
     const result = divideNumbers(dividend, 90);
+    // throw new Error('Not a number !')
 
     expect(result).toBe(0);
   });
 
-  it("should return NaN if any of the number is NaN", () => {
-    const result = divideNumbers(100, NaN);
-    const result2 = divideNumbers(NaN, 90);
-      
-    expect(result).toBeNaN();
-    expect(result2).toBe(NaN);
+  it("should throw an Exception ('number cannot be NaN!') if any of the number is NaN", () => {  
+
+    expect(() =>  divideNumbers(100, NaN)).toThrowError('number cannot be NaN!');
+    expect(() =>  divideNumbers(NaN, 90)).toThrowError('number cannot be NaN!');
   });
 
-  it("should return NaN if 0 is a divider", () => {
+  it("should throw an Exception ('Cannot divide by 0!') if 0 is a divider", () => {
     const divider = 0;
 
-    const result = divideNumbers(100, divider);
-
-    expect(result).toBe(NaN);
+    expect(() =>  divideNumbers(100, divider)).toThrowError('Cannot divide by 0!');
   });
 });
