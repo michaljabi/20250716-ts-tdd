@@ -10,16 +10,23 @@
  * */
 describe('beforeEach and beforeAll block [b001]', () => {
 
+	let original: any;
 	let initialValue = 100;
 	let someRestartableValue = '!';
 
 	beforeAll(() => {
-	
+		// original = MutationObserver; // komentujemy bo nie jesteśmy z jsdom / przeglądarka.
+		// @ts-ignore
+		globalThis.MutationObserver = function() {};
 	})
 
 	beforeEach(() => {
 		initialValue = 2000;
 		someRestartableValue = '😃';
+	})
+
+	afterAll(() => {
+		globalThis.MutationObserver = original;
 	})
 
 	it('should be init before all test', () => {
