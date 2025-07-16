@@ -6,14 +6,12 @@ function throwIfNaN(num: number) {
 
 
 export function divideNumbers(a: number | string, b: number | string): number {
-    // if(Number.isNaN(a) || Number.isNaN(b)) {
-    //     throw new Error('number cannot be NaN!');
-    // }
-    throwIfNaN(Number(b));
-    throwIfNaN(Number(a));
-    if(Number(b) === 0) {
+    const dividend = Number(a)
+    const divider = Number(b)
+    throwIfNaN(dividend);
+    throwIfNaN(divider);
+    if(divider === 0) {
         throw new Error('Cannot divide by 0!');
     }
-    return Number(a) / Number(b);
-    //return Number((a / b).toFixed(2));
+    return dividend / divider;
 }
