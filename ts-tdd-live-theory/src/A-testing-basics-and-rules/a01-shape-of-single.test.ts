@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest'
+
 /**
  * UWAGA:
  * - test poniżej jest "niemądry" :), jest tutaj jednak po to, aby pokazać, jak prosto jest uzyskać automatyzację testu;
@@ -11,5 +13,11 @@
  * */
 test('should be simple to test 😊 [a01]' , () => {
 
-	expect(10 + 10 + 10).toBe(30);
+	console.log('HELLO!')
+	expect(10 + 10 + 10).toEqual(30)
+	expect({a: 1, b:2}).toEqual({b:2, a:1});
+	expect(10 + 10 + 10).not.toBe(31);
+
+	// .toEqual -> typy obiektowe
+	// .toBe -> typy proste
 })
