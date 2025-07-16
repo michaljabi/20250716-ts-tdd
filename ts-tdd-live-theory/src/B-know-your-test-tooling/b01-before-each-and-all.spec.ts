@@ -14,10 +14,11 @@ describe('beforeEach and beforeAll block [b001]', () => {
 	let someRestartableValue = '!';
 
 	beforeAll(() => {
-		initialValue = 2000;
+	
 	})
 
 	beforeEach(() => {
+		initialValue = 2000;
 		someRestartableValue = '😃';
 	})
 
@@ -30,14 +31,25 @@ describe('beforeEach and beforeAll block [b001]', () => {
 		* Testy mogą być uruchamiane w różnej kolejności (i na tym polega ich wzajemna niezależność!)
 		* */
 
-		expect(initialValue).toBeGreaterThan(2000);
+		expect(initialValue).toBe(2001);
 	})
 
 	it('should be init before all test 2', () => {
 
 		initialValue++;
+		initialValue++;
 
-		expect(initialValue).toBeGreaterThan(2000);
+		expect(initialValue).toBe(2002);
+	})
+
+
+	it('should be init before all test 3', () => {
+
+		initialValue++;
+		initialValue++;
+		initialValue++;
+
+		expect(initialValue).toBe(2003);
 	})
 
 	describe('someRestartableValue', () => {
