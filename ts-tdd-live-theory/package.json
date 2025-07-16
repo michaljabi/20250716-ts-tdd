@@ -11,7 +11,8 @@
     "test:c01": "vitest c01",
     "coverage": "vitest --coverage",
     "build": "tsc",
-    "list": "dir"
+    "list": "dir",
+    "tsc:init": "tsc --init"
   },
   "keywords": [],
   "author": "",
