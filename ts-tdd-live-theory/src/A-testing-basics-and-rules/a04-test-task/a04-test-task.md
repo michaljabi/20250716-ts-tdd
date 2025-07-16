@@ -25,3 +25,7 @@ _możesz przygotować sobie dedykowany `script` w [package.json](../../../packag
 - jeśli dzielimy przez `0` lub jeśli któraś z liczb `a` / `b` jest `NaN` 
 - rzuć odpowiedni wyjątek!
 
+### Zmiana wymagań (a04.4):
+- niestety liczby które dzielimy mogą być typu `string`,
+- upewnij się, że `string` da się przedstawić w formie liczby - jeśli tak, to wszystko powinno dzialac jak do tej pory
+- jesli nie - rzuć blad podobny jak w przypadku `NaN`
