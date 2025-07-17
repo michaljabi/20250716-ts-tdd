@@ -11,7 +11,7 @@ import { isNumber, multiply } from "./e01-numeric-pipes";
 
 
 
-export function multiplyAll(...mabyNumbers: unknown[]) {
+export async function multiplyAll(...mabyNumbers: unknown[]) {
 
     const numbers = mabyNumbers.filter(isNumber)
     return numbers.length ? numbers.reduce(multiply, 1) : 0;
