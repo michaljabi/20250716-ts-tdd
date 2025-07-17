@@ -42,7 +42,7 @@ import { multiplyAll } from "./e01-multiply-all";
 * 🚀|0 - napisz plan testowania....
 * 
 * 🚀|1st - napisz testy
-* 2nd - zaimplementuj
+* 🚀|2nd - zaimplementuj
 * 3rd - refactor
 * */
 
@@ -111,6 +111,8 @@ describe('multiplyAll', () => {
 
 	it('should throw error "Cannot multiply by NaN!" if any of arguments is NaN', () => {
 
+
+		// console.log(multiplyAll(7, 9, false, NaN));
 		expect(() => {
 			multiplyAll(7, 9, false, NaN);
 		}).toThrowError('Cannot multiply by NaN!')
