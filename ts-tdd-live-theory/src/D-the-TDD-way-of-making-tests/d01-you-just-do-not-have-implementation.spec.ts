@@ -44,15 +44,47 @@
  * Aby rozpocząć: usuń część .skip
  * */
 
-describe.skip('attachProfession [d01]', () => {
 
 
-	// #Zadanie:
-	// Czy możesz mnie zaimplementować?
+
+interface User {
+	name: string;
+	profession?: string;
+	// profession?: 'programmer' | 'barber' | 'seller';
+}
+
+function userFixture(name: string = 'John'): User {
+	return { name }
+}
+
+
+describe('attachProfession [d01]', () => {
+
+
+
+	function attachProfession(user: User, profession?: User['profession']) {
+		const myUser: User = { name: user.name };
+		myUser['profession'] = profession || 'unknown';
+		return myUser
+	}
+
+	// #Zadania:
+
+	// Mocks:
+		// - 
+
+	// 1. Czy możesz uprościć przygotowanie `Given` ?
+	// 2. Czy możesz mnie zaimplementować?
+
+	let user: User;
+
+	beforeEach(() => {
+		const user = userFixture();
+	})
 
 
 	it('should attach profession to given object', () => {
-		 const user = {name: 'John'};
+		 const user = userFixture();
 		 const profession = 'programmer'
 
 		 const decoratedUser = attachProfession(user, profession);
@@ -61,7 +93,7 @@ describe.skip('attachProfession [d01]', () => {
 	})
 
 	it('should not mutate given object at all', () => {
-		const user = {name: 'Jane'};
+		const user = userFixture('Jane');
 		const profession = 'accountant'
 
 		const decoratedUser = attachProfession(user, profession);
@@ -71,7 +103,7 @@ describe.skip('attachProfession [d01]', () => {
 	})
 
 	it('should decorate with profession = unknown if no profession given', () => {
-		const user = {name: 'Richard'};
+		const user = userFixture('Richard'); // {name: 'Richard'};
 
 		const decoratedUser = attachProfession(user);
 
@@ -79,3 +111,7 @@ describe.skip('attachProfession [d01]', () => {
 	})
 
 })
+
+
+// Musiałem to dodać ze względu na TS (chodzi o modułowość ESM / heretyczność)
+export {};
