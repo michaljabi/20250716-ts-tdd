@@ -43,7 +43,7 @@ import { multiplyAll } from "./e01-multiply-all";
 * 
 * 🚀|1st - napisz testy
 * 🚀|2nd - zaimplementuj
-* 3rd - refactor
+* 🚀|3rd - refactor
 * */
 
 describe('multiplyAll', () => {
