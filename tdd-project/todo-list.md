@@ -9,3 +9,12 @@ skrypty:
 - do testowania (test runner)
 - do urchamiania produkcji
 
+AD 1. 
+```
+npm init -y
+```
+
+```
+npm i -D typescript vitest
+```
+
