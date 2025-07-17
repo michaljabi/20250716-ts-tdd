@@ -41,7 +41,7 @@ import { multiplyAll } from "./e01-multiply-all";
 *
 * 🚀|0 - napisz plan testowania....
 * 
-* 1st - napisz testy
+* 🚀|1st - napisz testy
 * 2nd - zaimplementuj
 * 3rd - refactor
 * */
@@ -53,31 +53,73 @@ describe('multiplyAll', () => {
 	})
 
 	it.each([
+		[[1, 8, 4], 32],
+		[[2.3, 2], 4.6],
+		[[-200, 2, 4], -1600],
+		[[2], 2],
+	])('should multiply N given arguments %o result in: %d - for different kinf of numbers [decimal, nagative, positive etc.]', (args: unknown[], expectedResult: number) => {
 
-	])('should multiply N given arguments %o result in: %d - for different kinf of numbers [decimal, nagative, positive etc.]', () => {
+		const result = multiplyAll(...args);
 
-		
+		expect(result).toBe(expectedResult);
 	})
 
-	it.todo('should return 0 if no arguments given', () => {})
+	it('should return 0 if no arguments given', () => {
+		
+		expect(multiplyAll()).toBe(0);
+	})
 
 
-	it.todo('should return 0 if any of argument is 0', () => {})
+	it('should return 0 if any of argument is 0', () => {
+
+		const zero = 0;
+
+		expect(multiplyAll(9, 45, 8.9, zero, 2)).toBe(0);
+	})
 
 
 	it.each([
+		[[1, '4', 7, 9], 63],
+		[[2.3, true, 2], 4.6],
+		[[-200, 2, false, 4], -1600],
+		[[222, {}], 222],
+	])('should silently skip arguments with other than number type %o result in: %d (test boolean false especially)', (args: unknown[], expectedResult: number) => {
 
-	])('should silently skip arguments with other than number type (test boolean especially)', () => {
+		const result = multiplyAll(...args);
 
+		expect(result).toBe(expectedResult);
 	})
 
-	it.todo('should NOT cast boolean to (false -> 0 | true -> 1) when other then number type', () => {})
+	it('should NOT cast boolean to (false -> 0) when other then number type', () => {
 	
+		const result = multiplyAll(7, 9, false);
+		// const result2 = multiplyAll(true);
 
-	it.todo('should return 0 if all of the arguments are different than number', () => {})
+		expect(result).not.toBe(0);
+		expect(result).toBe(63);
+
+		// expect(result2).toBe(0)
+	})
 
 
-	it.todo('should throw error "Cannot multiply by NaN!" if any of arguments is NaN')
+	it('should return 0 if all of the arguments are different than number (test boolean true especially)', () => {
+		const result = multiplyAll('8', {}, true);
+
+		expect(result).toBe(0)
+	})
+
+
+	it('should throw error "Cannot multiply by NaN!" if any of arguments is NaN', () => {
+
+		expect(() => {
+			multiplyAll(7, 9, false, NaN);
+		}).toThrowError('Cannot multiply by NaN!')
+
+
+		expect(() => {
+			multiplyAll('8', {}, true, [], NaN);
+		}).toThrowError('Cannot multiply by NaN!')
+	})
 
 
 })
