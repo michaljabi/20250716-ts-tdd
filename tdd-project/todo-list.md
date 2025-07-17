@@ -40,3 +40,7 @@ w pliku [tsconfig.json](./tsconfig.json)
 pozwoli to używać globalnych nazw: `it` / `test`, `describe`, `expect` w testach, bez konieczności importowania
 
 3. napisz plan testowania, przygotuj testy
+
+- przygotowany plan testowania do `game` i do `state` dla gry.
+
+4. napisz testy do `game`
