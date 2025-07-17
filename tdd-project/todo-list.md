@@ -44,3 +44,4 @@ pozwoli to używać globalnych nazw: `it` / `test`, `describe`, `expect` w testa
 - przygotowany plan testowania do `game` i do `state` dla gry.
 
 4. napisz testy do `game`
+5. zaimplementuj logikę do `game`
