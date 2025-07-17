@@ -49,12 +49,15 @@
 
 interface User {
 	name: string;
-	profession?: string;
+	profession: string;
 	// profession?: 'programmer' | 'barber' | 'seller';
 }
 
 function userFixture(name: string = 'John'): User {
-	return { name }
+	// jeśli `proffesion` nie jest opcjonalne to:
+
+	// return { name, profession: '' } rozwiązanie 1, stub dla wartości które muszą być a ich nie potrzebujemy
+	return { name } as User; // rozwiązanie 2 to asercja typu (oszukujemy TS);
 }
 
 
@@ -62,10 +65,8 @@ describe('attachProfession [d01]', () => {
 
 
 
-	function attachProfession(user: User, profession?: User['profession']) {
-		const myUser: User = { name: user.name };
-		myUser['profession'] = profession || 'unknown';
-		return myUser
+	function attachProfession(user: User, profession: User['profession'] = 'unknown'): User {
+		return {...user, profession }
 	}
 
 	// #Zadania:
@@ -79,7 +80,20 @@ describe('attachProfession [d01]', () => {
 	let user: User;
 
 	beforeEach(() => {
-		const user = userFixture();
+		// ryzykowne podejście, ale możemy go użyć jeśli potrzebny jest nam `STUB` i nie interesuje nas sam obiekt user.
+		// jedynie funkcjonalność dodawania zawodu.
+		user = {} as User;
+	})
+
+
+	it('should attach profession to given object (aternative version - testing only profession field)', () => {
+		 // const user = userFixture();
+		 const myProfession = 'programmer'
+
+		 const decoratedUser = attachProfession(user, myProfession);
+
+		 expect(decoratedUser).toHaveProperty('profession', myProfession)
+		 // expect(decoratedUser).toHaveProperty('profession', 'programmer')
 	})
 
 
