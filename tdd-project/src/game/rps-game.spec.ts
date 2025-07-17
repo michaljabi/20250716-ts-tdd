@@ -1,10 +1,11 @@
 import { it, expect, describe } from 'vitest'
 import { prepareGame } from './rps-game';
+import type { TheRPSGame } from './rps-game'
 
 
 describe('RPS game', () => {
 
-    let rpsGame = prepareGame();
+    let rpsGame: TheRPSGame;
 
     beforeEach(() => {
         rpsGame = prepareGame();
@@ -20,9 +21,9 @@ describe('RPS game', () => {
 
 
     it.each([
-        ['rock'],
-        ['paper'],
-        ['scissors']
+        ['rock'] as const,
+        ['paper'] as const,
+        ['scissors'] as const
     ])('should result in game state `DRAW` if both player have same choices [RQ-5, RQ-6]', (sameChoice) => {
 
         const result = rpsGame.playRound(sameChoice, sameChoice);
@@ -31,9 +32,9 @@ describe('RPS game', () => {
     })
 
     it.each([
-        ['rock', 'scissors'],
-        ['paper', 'rock'],
-        ['scissors', 'paper']
+        ['rock', 'scissors'] as const,
+        ['paper', 'rock'] as const,
+        ['scissors', 'paper'] as const
     ])('should result in game state `WIN` if 1st player choice is %s and 2nd player choice is %s [RQ-5, RQ-6]', (p1Choice, p2Choice) => {
         const result = rpsGame.playRound(p1Choice, p2Choice);
 
@@ -41,9 +42,9 @@ describe('RPS game', () => {
     })
 
     it.each([
-        ['rock', 'paper'],
-        ['paper', 'scissors'],
-        ['scissors', 'rock']
+        ['rock', 'paper'] as const,
+        ['paper', 'scissors'] as const,
+        ['scissors', 'rock'] as const,
     ])('should result in game state `LOOSE` if 1st player choice is %s and 2nd player choice is %s [RQ-5, RQ-6]', (p1Choice, p2Choice) => {
         const result = rpsGame.playRound(p1Choice, p2Choice);
 
@@ -70,6 +71,7 @@ describe('RPS game', () => {
 
         expect(new Set(cpuResults).values().toArray().sort()).toEqual(['paper', 'rock', 'scissors'])
         // lub krócej 🤣:
+        // @ts-ignore
         expect(cpuResults).toEqual(expect.arrayContaining(gameChoices))
         expect(new Set(cpuResults).size).toBe(gameChoices.length);
     })

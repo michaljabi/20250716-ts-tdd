@@ -1,29 +1,35 @@
 
 
+export enum RoundResult {
+  WIN = 'WIN',
+  LOOSE = 'LOOSE',
+  DRAW = 'DRAW' 
+}
+
+export type TheRPSGame = ReturnType<typeof prepareGame>;
+
 export function prepareGame() {
 
-    const gamePicks =  ['rock', 'paper', 'scissors'];
+    const gamePicks =  ['rock', 'paper', 'scissors'] as const;
+    type GameChoices = typeof gamePicks[number];
+    
+    const winConditions: Record<GameChoices, GameChoices> = {
+        rock: 'scissors',
+        paper: 'rock',
+        scissors: 'paper'
+    }
 
     return {
-        getChoices() {
+        getChoices(): readonly GameChoices[] {
             return gamePicks
         },
-        playRound(choice1st: string, choice2nd: string) {
+        playRound(choice1st: GameChoices, choice2nd: GameChoices) {
             if(choice1st === choice2nd) {
-                return 'DRAW'
+                return RoundResult.DRAW
             }
-            if(
-                choice1st === 'rock' && choice2nd === 'scissors'
-                ||
-                 choice1st === 'paper' && choice2nd === 'rock'
-                 || 
-                 choice1st === 'scissors' && choice2nd === 'paper'
-            ) {
-                return 'WIN'
-            }
-            return 'LOOSE'
+            return winConditions[choice1st] === choice2nd ? RoundResult.WIN :  RoundResult.LOOSE;
         },
-        getPickFromCPU() {
+        getPickFromCPU(): GameChoices {
             return gamePicks[Math.floor(Math.random() * gamePicks.length)]
         }
     }
