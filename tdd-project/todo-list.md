@@ -45,3 +45,4 @@ pozwoli to używać globalnych nazw: `it` / `test`, `describe`, `expect` w testa
 
 4. napisz testy do `game`
 5. zaimplementuj logikę do `game`
+6. zrefaktoryzuj logikę do `game`
