@@ -69,5 +69,8 @@ describe('RPS game', () => {
         // expect(cpuResults).toContain('scissors')
 
         expect(new Set(cpuResults).values().toArray().sort()).toEqual(['paper', 'rock', 'scissors'])
+        // lub krócej 🤣:
+        expect(cpuResults).toEqual(expect.arrayContaining(gameChoices))
+        expect(new Set(cpuResults).size).toBe(gameChoices.length);
     })
 })
