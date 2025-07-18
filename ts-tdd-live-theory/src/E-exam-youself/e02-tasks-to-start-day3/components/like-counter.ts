@@ -28,7 +28,8 @@ export class LikeCounter extends HTMLDivElement {
         this.unlikeBtn.addEventListener('click', this.unlikeBtnClick2.bind(this));
 
         // ??
-        //this.unlikeBtn.style.display = 'node'
+       // this.unlikeBtn.style.display = 'none'
+        // this.unlikeBtn.style.visibility = 'hidden'
 
         this.messageContainer.textContent = `You have ${this.state.noOfLikes} likes`;
 
