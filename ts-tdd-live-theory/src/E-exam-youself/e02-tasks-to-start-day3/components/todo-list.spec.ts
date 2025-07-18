@@ -14,41 +14,35 @@
 
 import { TodoList } from "./todo-list"
 import { screen } from "@testing-library/dom";
+import { TodoDTO } from "./todo-dto";
 
 
 describe('TodoList', () => {
 
     let todoList: TodoList;
+
+    type PartialTodoWithTitleAndComplete = Pick<TodoDTO, 'title' | 'completed'>;
+
     const server = setupServer(
 		http.get('https://jsonplaceholder.typicode.com/todos', () => {
-			return HttpResponse.json([
+			return HttpResponse.json<PartialTodoWithTitleAndComplete[]>([
                 {
-                    "userId": 1,
-                    "id": 1,
-                    "title": "delectus aut autem",
-                    "completed": false
+                    title: 'sample',
+                    completed: false
                 },
                 {
-                    "userId": 1,
-                    "id": 2,
                     "title": "quis ut nam facilis et officia qui",
                     "completed": false
                 },
                 {
-                    "userId": 1,
-                    "id": 3,
                     "title": "fugiat veniam minus",
                     "completed": false
                 },
                 {
-                    "userId": 1,
-                    "id": 4,
                     "title": "this is done",
                     "completed": true
                 },
                 {
-                    "userId": 1,
-                    "id": 5,
                     "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
                     "completed": false
                 },

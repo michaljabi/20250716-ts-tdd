@@ -1,9 +1,4 @@
-interface TodoDTO {
-    userId: number;
-    id: number;
-    title: string;
-    completed: boolean;
-}
+import type { TodoDTO } from './todo-dto'
 
 interface Todo {
     title: string;
