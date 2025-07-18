@@ -9,41 +9,119 @@
 * @vitest-environment jsdom
 * */
 
+	import {http, HttpResponse } from "msw";
+	import {setupServer} from "msw/node";
+
 import { TodoList } from "./todo-list"
+import { screen } from "@testing-library/dom";
 
 
 describe('TodoList', () => {
 
-    let todoList = new TodoList();
+    let todoList: TodoList;
+    const server = setupServer(
+		http.get('https://jsonplaceholder.typicode.com/todos', () => {
+			return HttpResponse.json([
+                {
+                    "userId": 1,
+                    "id": 1,
+                    "title": "delectus aut autem",
+                    "completed": false
+                },
+                {
+                    "userId": 1,
+                    "id": 2,
+                    "title": "quis ut nam facilis et officia qui",
+                    "completed": false
+                },
+                {
+                    "userId": 1,
+                    "id": 3,
+                    "title": "fugiat veniam minus",
+                    "completed": false
+                },
+                {
+                    "userId": 1,
+                    "id": 4,
+                    "title": "this is done",
+                    "completed": true
+                },
+                {
+                    "userId": 1,
+                    "id": 5,
+                    "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
+                    "completed": false
+                },
+            ])
+		})
+	)
+
+
+    beforeEach(() => {
+        todoList = new TodoList();
+        document.body.append(todoList);
+    })
+
+    afterEach(() => {
+         document.body.innerHTML = '';
+    })
+
+
+    beforeAll(() => server.listen())
+	afterEach(() => server.resetHandlers())
+	afterAll(() => server.close())
 
 
     it('should render', async () => {
 
-
-       document.body.appendChild(todoList);
-
-        await vi.waitFor(
-            () => {
-                if(!document.body.querySelectorAll('li').length) {
-                    throw new Error('Cannot find li elements')
-                }
-            },
-        )
+        // await vi.waitFor(
+        //     () => {
+        //         if(!document.body.querySelectorAll('li').length) {
+        //             throw new Error('Cannot find li elements')
+        //         }
+        //     },
+        // )
 
         // setTimeout(() => {
         //     done()
 
         //     expect(document.body.innerHTML).toEqual('to consider...');
         // }, 2000)
-
+        expect(todoList).toBeInTheDocument();
     })
 
-    it.todo('should display empty list properly')
+    it('should properly display 5 todos after fetch from server', async  () => {
+        const todosLiElements = await screen.findAllByRole('listitem');
+
+        expect(todosLiElements.length).toBe(5)
+        expect(todosLiElements[4]).toHaveTextContent('laboriosam mollitia et enim quasi adipisci quia provident illum')
+    })
+
+   
+    it('should display done todos as cossed ones', async () => {
+        const todosLiElements = await screen.findAllByRole('listitem');
+  
+        // screen.debug();
+        // const doneToDoItem = await screen.findyByRole('listitem', {name:'this is done'})
+
+        const doneToDoItem = todosLiElements.find(i => i.textContent?.includes('this is done'))
+
+        expect(doneToDoItem).toHaveStyle('text-decoration: line-through')
+    })
 
 
-    it.todo('should properly display 5 todos after fetch from server')
+    it('should display empty list properly', async () => {
 
+        // GIVEN
+        server.use(http.get('https://jsonplaceholder.typicode.com/todos/', () => {
+            return HttpResponse.json([])
+        }))
 
-    it.todo('should display done todos as cossed ones')
+        // When
+        const $ulList = await screen.findByRole('list');
+
+        // Then
+        expect($ulList).toBeEmptyDOMElement();
+    })
 
 })
