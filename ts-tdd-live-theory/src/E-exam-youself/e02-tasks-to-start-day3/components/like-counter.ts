@@ -25,7 +25,10 @@ export class LikeCounter extends HTMLDivElement {
 
         this.unlikeBtn.textContent = 'Nie podoba mi się 👎';
         this.unlikeBtn.className = 'unlike-btn';
-        this.unlikeBtn.addEventListener('click', this.unlikeBtnClick.bind(this));
+        this.unlikeBtn.addEventListener('click', this.unlikeBtnClick2.bind(this));
+
+        // ??
+        //this.unlikeBtn.style.display = 'node'
 
         this.messageContainer.textContent = `You have ${this.state.noOfLikes} likes`;
 
@@ -74,7 +77,7 @@ export class LikeCounter extends HTMLDivElement {
         this.render();
     }
 
-    unlikeBtnClick() {
+    unlikeBtnClick2() {
         if( this.state.noOfLikes > 0 ) {
             this.state.noOfLikes--;
         }

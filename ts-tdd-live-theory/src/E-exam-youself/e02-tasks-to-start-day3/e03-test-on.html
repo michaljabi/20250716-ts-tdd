@@ -7,11 +7,15 @@
 <body>
 
     <script type="module">
+
+        import $ from 'https://esm.sh/jquery';
+
         import { LikeCounter } from './prod/like-counter.js';
         import { TodoList } from './prod/todo-list.js';
-        document.addEventListener("DOMContentLoaded", () => {
-            document.body.appendChild( new LikeCounter());
-            document.body.appendChild( new TodoList());
+
+        $(() => {
+            $(document.body).append( new LikeCounter());
+            $(document.body).append( new TodoList());
         })
     </script>
 </body>
