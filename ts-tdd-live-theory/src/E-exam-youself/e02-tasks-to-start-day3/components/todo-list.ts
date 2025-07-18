@@ -36,7 +36,7 @@ export class TodoList extends HTMLElement {
     }
 
     renderList() {
-        this.$uiList.innerHTML = this.list.map(e => `<li>${e.title}</li>`).join('')
+        this.$uiList.innerHTML = this.list.map(({title, done}) => `<li style="${ done ? 'text-decoration: line-through' : ''}">${title}</li>`).join('')
     }
 }
 customElements.define('todo-list', TodoList);

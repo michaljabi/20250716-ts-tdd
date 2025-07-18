@@ -27,10 +27,23 @@ describe('TodoList', () => {
                 if(!document.body.querySelectorAll('li').length) {
                     throw new Error('Cannot find li elements')
                 }
-            }
+            },
         )
 
-        expect(document.body.innerHTML).toEqual('to consider...');
+        // setTimeout(() => {
+        //     done()
+
+        //     expect(document.body.innerHTML).toEqual('to consider...');
+        // }, 2000)
+
     })
+
+    it.todo('should display empty list properly')
+
+
+    it.todo('should properly display 5 todos after fetch from server')
+
+
+    it.todo('should display done todos as cossed ones')
 
 })
