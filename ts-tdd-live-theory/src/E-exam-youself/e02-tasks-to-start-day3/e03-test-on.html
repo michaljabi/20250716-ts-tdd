@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LikeCounter / TodoList - render view</title>
+</head>
+<body>
+
+    <script type="module">
+        import { LikeCounter } from './prod/like-counter.js';
+        import { TodoList } from './prod/todo-list.js';
+        document.addEventListener("DOMContentLoaded", () => {
+            document.body.appendChild( new LikeCounter());
+            document.body.appendChild( new TodoList());
+        })
+    </script>
+</body>
+</html>
